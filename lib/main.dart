@@ -27,16 +27,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List <Icon> scrolekeeper =[
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-  ];
+  List <Icon> scrolekeeper =[];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,20 +52,28 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
               color: Colors.green,
-              child: const Text(
-                'True',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
+              child: TextButton(
+                child: const Text(
+                  'True',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
                 ),
+                onPressed: () {
+                  setState(() {
+                    scrolekeeper.add(
+                      const Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                    );
+                  });
+                },
               ),
-              onPressed: () {
-                //The user picked true.
-              },
             ),
           ),
         ),
@@ -85,7 +84,14 @@ class _QuizPageState extends State<QuizPage> {
               color: Colors.red,
               child: TextButton(
                 onPressed: () {
-                  //The user picked false.
+                  setState(() {
+                    scrolekeeper.add(
+                      Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    );
+                  });
                 },
                 child: const Text(
                   'False',
